@@ -1,12 +1,3 @@
-
-//Code for bookmarklete
-javascript:(!function e(){var t,n,l,o,i,r,s,d,a,c,y,p,u,x,b,$,f=null!==document.querySelector(".new-created-Element");function v(e){e.preventDefault();var t=document.getElementById("text").value.toUpperCase();document.getElementById("inpt-text").innerHTML=t}function E(e){e.preventDefault();var t=document.getElementById("text").value.toLowerCase();document.getElementById("inpt-text").innerHTML=t}function g(e){e.preventDefault();for(var t=document.getElementById("text").value.split(" "),n=0;n<t.length;n++){var l=t[n];t[n]=l.charAt(0).toUpperCase()+l.slice(1).toLowerCase()}var o=t.join(" ");document.getElementById("inpt-text").innerHTML=o}f||((a=document.createElement("div")).setAttribute("class","new-created-Element"),a.innerHTML=`        <form action="" id="form">          <textarea placeholder="text" id="text"></textarea>          <div class="btn-container">            <button id="button_upper" class="btn">UPPERCASE</button>            <button id="button_lower" class="btn">lowercase</button>            <button id="button_capital" class="btn">CapitalizeCase</button>          </div>        </form>        <div id="inpt-text"></div>        <button class="copy btn">Copy</button>        <span class="textCopied" style="text-align:center;visibility: hidden;">Text Copied</span>        <button class="close_btn btn">X</button>      `,document.body.appendChild(a),t=document.getElementById("button_upper"),n=document.getElementById("button_lower"),l=document.getElementById("button_capital"),o=document.getElementById("inpt-text"),i=document.getElementById("text"),r=document.getElementById("form"),s=document.querySelector(".new-created-Element"),d=document.querySelector(".close_btn"),copy=document.querySelector(".copy"),textCopied=document.querySelector(".textCopied"),(c=document.querySelector(".new-created-Element")).style.position="fixed",c.style.zIndex="9999",c.style.right="0",c.style.top="0",c.style.background="#fff",c.style.width="400px",c.style.padding="40px",c.style.boxSizing="border-box",c.style.boxShadow="7px 6px 14px 11px #686262",y=document.getElementById("text"),p=document.getElementById("form"),u=document.getElementById("inpt-text"),x=document.querySelector(".close_btn"),b=document.querySelectorAll(".btn"),document.querySelector(".textCopied"),$=document.querySelector("#text"),b.forEach(function(e){e.style.width="auto",e.style.padding="10px",e.style.fontSize="13px",e.style.background="#F2F5F7",e.style.cursor="pointer",e.style.marginTop="10px",e.style.color="#000",e.style.border="1px solid #000",e.addEventListener("mouseover",function(){e.style.backgroundColor="#1e70b9",e.style.color="#fff"}),e.addEventListener("mouseout",function(){e.style.backgroundColor="#F2F5F7",e.style.color="#000"})}),$.style.background="#fff",$.style.color="#000",x.style.position="absolute",x.style.right="1px",x.style.top="1px",y.style.width="300px",y.style.height="100px",y.style.padding="10px",p.style.display="flex",p.style.flexDirection="column",p.style.rowGap="20px",u.style.fontSize="16px",u.style.padding="10px",u.style.marginTop="40px",u.style.border="1px solid #000",t.addEventListener("click",v),n.addEventListener("click",E),l.addEventListener("click",g),d.addEventListener("click",function(){s.remove(),f=!1}),copy.addEventListener("click",function(){var e=document.getElementById("inpt-text").textContent;navigator.clipboard.writeText(e),textCopied.style.visibility="visible",setTimeout(function(){textCopied.style.visibility="hidden"},1e3)}),t.addEventListener("click",v),n.addEventListener("click",E),l.addEventListener("click",g)),f=!0}());
-
-
-
-
-// ===================================== code to make bookmark start=====================================================================
-
 (function textTransform() {
     var hasClass = document.querySelector(".new-created-Element") !== null;
     var button_upper, button_lower, button_capital, inpt_text, inputText, form, NewElement, close_btn;
@@ -20,24 +11,81 @@ javascript:(!function e(){var t,n,l,o,i,r,s,d,a,c,y,p,u,x,b,$,f=null!==document.
   
     hasClass = true;
   
-    function createElement() {
-      var inputForm = document.createElement("div");
-      inputForm.setAttribute("class", "new-created-Element");
-      inputForm.innerHTML = `
-        <form action="" id="form">
-          <textarea placeholder="text" id="text"></textarea>
-          <div class="btn-container">
-            <button id="button_upper" class="btn">UPPERCASE</button>
-            <button id="button_lower" class="btn">lowercase</button>
-            <button id="button_capital" class="btn">CapitalizeCase</button>
-          </div>
-        </form>
-        <div id="inpt-text"></div>
-        <button class="copy btn">Copy</button>
-        <span class="textCopied" style="text-align:center;visibility: hidden;">Text Copied</span>
-        <button class="close_btn btn">X</button>
-      `;
-      document.body.appendChild(inputForm);
+    function createElement() {    
+
+// Create main container div
+var containerDiv = document.createElement("div");
+containerDiv.className = "new-created-Element";
+
+// Create form element
+var form = document.createElement("form");
+form.action = "";
+form.id = "form";
+
+// Create textarea input field
+var textarea = document.createElement("textarea");
+textarea.placeholder = "text";
+textarea.id = "text";
+form.appendChild(textarea);
+
+// Create buttons container
+var btnContainer = document.createElement("div");
+btnContainer.className = "btn-container";
+
+// Create UPPERCASE button
+var upperButton = document.createElement("button");
+upperButton.id = "button_upper";
+upperButton.className = "btn";
+upperButton.textContent = "UPPERCASE";
+btnContainer.appendChild(upperButton);
+
+// Create lowercase button
+var lowerButton = document.createElement("button");
+lowerButton.id = "button_lower";
+lowerButton.className = "btn";
+lowerButton.textContent = "lowercase";
+btnContainer.appendChild(lowerButton);
+
+// Create CapitalizeCase button
+var capitalButton = document.createElement("button");
+capitalButton.id = "button_capital";
+capitalButton.className = "btn";
+capitalButton.textContent = "CapitalizeCase";
+btnContainer.appendChild(capitalButton);
+
+// Append buttons container to form
+form.appendChild(btnContainer);
+
+// Create inpt-text div
+var inptText = document.createElement("div");
+inptText.id = "inpt-text";
+
+// Create copy button
+var copyButton = document.createElement("button");
+copyButton.className = "copy btn";
+copyButton.textContent = "Copy";
+
+// Create textCopied span
+var textCopied = document.createElement("span");
+textCopied.className = "textCopied";
+textCopied.style.textAlign = "center";
+textCopied.style.visibility = "hidden";
+textCopied.textContent = "Text Copied";
+
+// Create close button
+var closeButton = document.createElement("button");
+closeButton.className = "close_btn btn";
+closeButton.textContent = "X";
+
+// Append elements to the container div
+containerDiv.appendChild(form);
+containerDiv.appendChild(inptText);
+containerDiv.appendChild(copyButton);
+containerDiv.appendChild(textCopied);
+containerDiv.appendChild(closeButton);
+
+// Append the container div to the document body
+      document.body.appendChild(containerDiv);
       button_upper = document.getElementById("button_upper");
       button_lower = document.getElementById("button_lower");
       button_capital = document.getElementById("button_capital");
@@ -69,6 +117,7 @@ javascript:(!function e(){var t,n,l,o,i,r,s,d,a,c,y,p,u,x,b,$,f=null!==document.
       );
 
     }
+
       function upperCaseFunc(e) {
       e.preventDefault();
       var inputText = document.getElementById("text").value;
@@ -99,7 +148,7 @@ javascript:(!function e(){var t,n,l,o,i,r,s,d,a,c,y,p,u,x,b,$,f=null!==document.
     function StyleFunc() {
       var NewElement = document.querySelector(".new-created-Element");
       NewElement.style.position = "fixed";
-      NewElement.style.zIndex = "9999";
+      NewElement.style.zIndex = "999999999";
       NewElement.style.right = "0";
       NewElement.style.top = "0";
       NewElement.style.background = "#fff";
@@ -153,6 +202,3 @@ javascript:(!function e(){var t,n,l,o,i,r,s,d,a,c,y,p,u,x,b,$,f=null!==document.
       
     }
   })();
-// ===================================== code to make bookmark End=====================================================================
-
-

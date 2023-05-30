@@ -171,7 +171,7 @@ containerDiv.appendChild(closeButton);
         e.style.fontSize='13px';
         e.style.background="#F2F5F7";
         e.style.cursor='pointer';
-        e.style.marginTop='10px';
+        e.style.margin='10px 3px';
         e.style.color="#000";
          e.style.border="1px solid #000"
         e.addEventListener("mouseover", function() {

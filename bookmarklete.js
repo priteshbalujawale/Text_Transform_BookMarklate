@@ -44,14 +44,12 @@ var textarea = document.createElement("textarea");
 textarea.placeholder = "text";
 textarea.id = "text";
 form.appendChild(textarea);
-
 //create reset button
 var reset = document.createElement("input")
 reset.type = "reset";
 reset.className = "btn";
-reset.id = "reset-btn"
+reset.id = "reset-btn";
 form.appendChild(reset);
-
 // Create buttons container
 var btnContainer = document.createElement("div");
 btnContainer.className = "btn-container";
@@ -89,6 +87,7 @@ var copyButton = document.createElement("button");
 copyButton.className = "copy btn";
 copyButton.textContent = "Copy";
 
+
 // Create textCopied span
 var textCopied = document.createElement("span");
 textCopied.className = "textCopied";
@@ -107,6 +106,7 @@ containerDiv.appendChild(inptText);
 containerDiv.appendChild(copyButton);
 containerDiv.appendChild(textCopied);
 containerDiv.appendChild(closeButton);
+
 
 // Append the container div to the document body
   document.body.appendChild(containerDiv);
@@ -221,10 +221,6 @@ containerDiv.appendChild(closeButton);
       inpt_text.style.maxHeight = "240px";
       inpt_text.style.overflowX = "auto";
       resetBtn.style.width = "fit-content";
-      resetBtn.style.height = "20px";
-      resetBtn.style.position = "absolute";
-      resetBtn.style.top = "150px";
-      resetBtn.style.right = "38px";
-      resetBtn.style.padding = "0";
+      resetBtn.style.padding = "4px";
     }
   })();

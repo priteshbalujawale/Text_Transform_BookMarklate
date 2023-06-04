@@ -4,9 +4,26 @@
   
     if (!hasClass) {
       createElement();
+      StyleFunc();
+
       button_upper.addEventListener("click", upperCaseFunc);
       button_lower.addEventListener("click", lowerCaseFunc);
       button_capital.addEventListener("click", capitalCaseFunc);
+      close_btn.addEventListener("click", function () {
+        NewElement.remove();
+        hasClass = false;
+      });
+      copy.addEventListener('click',function()
+      {
+        textCopied =document.querySelector('.textCopied');
+          var copyText = document.getElementById("inpt-text").textContent;
+          navigator.clipboard.writeText(copyText);
+          textCopied.style.visibility = 'visible';
+          setTimeout(function() {
+            textCopied.style.visibility = 'hidden';
+          }, 1000);
+      }
+      );
     }
   
     hasClass = true;
@@ -27,6 +44,13 @@ var textarea = document.createElement("textarea");
 textarea.placeholder = "text";
 textarea.id = "text";
 form.appendChild(textarea);
+
+//create reset button
+var reset = document.createElement("input")
+reset.type = "reset";
+reset.className = "btn";
+reset.id = "reset-btn"
+form.appendChild(reset);
 
 // Create buttons container
 var btnContainer = document.createElement("div");
@@ -85,39 +109,9 @@ containerDiv.appendChild(textCopied);
 containerDiv.appendChild(closeButton);
 
 // Append the container div to the document body
-      document.body.appendChild(containerDiv);
-      button_upper = document.getElementById("button_upper");
-      button_lower = document.getElementById("button_lower");
-      button_capital = document.getElementById("button_capital");
-      inpt_text = document.getElementById("inpt-text");
-      inputText = document.getElementById("text");
-      form = document.getElementById("form");
-      NewElement = document.querySelector(".new-created-Element");
-      close_btn = document.querySelector(".close_btn");
-      copy = document.querySelector(".copy");
-      textCopied =document.querySelector('.textCopied');
-      
-      StyleFunc();
-      button_upper.addEventListener("click", upperCaseFunc);
-      button_lower.addEventListener("click", lowerCaseFunc);
-      button_capital.addEventListener("click", capitalCaseFunc);
-      close_btn.addEventListener("click", function () {
-        NewElement.remove();
-        hasClass = false;
-      });
-      copy.addEventListener('click',function()
-      {
-          var copyText = document.getElementById("inpt-text").textContent;
-          navigator.clipboard.writeText(copyText);
-          textCopied.style.visibility = 'visible';
-          setTimeout(function() {
-            textCopied.style.visibility = 'hidden';
-          }, 1000);
-      }
-      );
-
-    }
-
+  document.body.appendChild(containerDiv);
+}
+// upperCase function
       function upperCaseFunc(e) {
       e.preventDefault();
       var inputText = document.getElementById("text").value;
@@ -125,30 +119,62 @@ containerDiv.appendChild(closeButton);
       document.getElementById("inpt-text").innerHTML = transFormedText;
 
     }
-  
+  //lowercase function
     function lowerCaseFunc(e) {
       e.preventDefault();
       var inputText = document.getElementById("text").value;
       var transFormedText = inputText.toLowerCase();
       document.getElementById("inpt-text").innerHTML = transFormedText;
     }
-  
+  //CapitalCase function
+    // function capitalCaseFunc(e) {
+    //   e.preventDefault();
+    //   var inputText = document.getElementById("text").value;
+    //   var words = inputText.split(" ");
+    //   for (var i = 0; i < words.length; i++) {
+    //     var word = words[i];
+    //     words[i] = word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+    //   }
+    //   var transFormedText = words.join(" ");
+
+      
+    //   document.getElementById("inpt-text").innerHTML = transFormedText;
+    // }
+
     function capitalCaseFunc(e) {
       e.preventDefault();
-      var inputText = document.getElementById("text").value;
-      var words = inputText.split(" ");
-      for (var i = 0; i < words.length; i++) {
-        var word = words[i];
-        words[i] = word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
-      }
-      var transFormedText = words.join(" ");
-      document.getElementById("inpt-text").innerHTML = transFormedText;
+      var sentence = document.getElementById("text").value;; // Input sentence
+      let words = sentence.split(/\b/); // Split the sentence into words
+      let capitalizedWords = words.map(word => {
+        if (/^[a-zA-Z]+$/.test(word)) { // Check if the word contains only letters
+          return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+        } else {
+          return word; // Return the word as it is (symbols, signs, and brackets)
+        }
+      });
+    
+      document.getElementById("inpt-text").innerHTML = capitalizedWords.join(''); // Join the words back into a sentence
     }
-  
+    
+    
+  //Style of elements
     function StyleFunc() {
-      var NewElement = document.querySelector(".new-created-Element");
+      NewElement = document.querySelector(".new-created-Element"); 
+      button_upper = document.getElementById("button_upper");
+      button_lower = document.getElementById("button_lower");
+      button_capital = document.getElementById("button_capital");
+      inpt_text = document.getElementById("inpt-text");
+      inputText = document.getElementById("text");
+      form = document.getElementById("form");
+      close_btn = document.querySelector(".close_btn");
+      copy = document.querySelector(".copy"); 
+      btns = document.querySelectorAll('.btn');
+      textCopied = document.querySelector('.textCopied');
+      text = document.querySelector('#text');
+      resetBtn = document.getElementById("reset-btn");
+
       NewElement.style.position = "fixed";
-      NewElement.style.zIndex = "999999999";
+      NewElement.style.zIndex = "9999999999999";
       NewElement.style.right = "0";
       NewElement.style.top = "0";
       NewElement.style.background = "#fff";
@@ -157,14 +183,6 @@ containerDiv.appendChild(closeButton);
       NewElement.style.boxSizing = "border-box";
       NewElement.style.boxShadow = "7px 6px 14px 11px #686262";
   
-      var inputText = document.getElementById("text");
-      var form = document.getElementById("form");
-      var inpt_text = document.getElementById("inpt-text");
-      var close_btn = document.querySelector(".close_btn");
-      var btns = document.querySelectorAll('.btn');
-      var textCopied = document.querySelector('.textCopied');
-      var text = document.querySelector('#text');
-
       btns.forEach(function(e){
         e.style.width= 'auto';
         e.style.padding="10px";
@@ -198,7 +216,15 @@ containerDiv.appendChild(closeButton);
       inpt_text.style.fontSize = "16px";
       inpt_text.style.padding = "10px";
       inpt_text.style.marginTop = "40px";
+      inpt_text.style.minHeight = "auto";
       inpt_text.style.border = "1px solid #000";
-      
+      inpt_text.style.maxHeight = "240px";
+      inpt_text.style.overflowX = "auto";
+      resetBtn.style.width = "fit-content";
+      resetBtn.style.height = "20px";
+      resetBtn.style.position = "absolute";
+      resetBtn.style.top = "150px";
+      resetBtn.style.right = "38px";
+      resetBtn.style.padding = "0";
     }
   })();

@@ -5,7 +5,7 @@
     if (!hasClass) {
       createElement();
       StyleFunc();
-
+      document.addEventListener('mouseup',getSelectionText);
       button_upper.addEventListener("click", upperCaseFunc);
       button_lower.addEventListener("click", lowerCaseFunc);
       button_capital.addEventListener("click", capitalCaseFunc);
@@ -19,6 +19,7 @@
           var copyText = document.getElementById("inpt-text").textContent;
           navigator.clipboard.writeText(copyText);
           textCopied.style.visibility = 'visible';
+          textCopied.style.color = "#000";
           setTimeout(function() {
             textCopied.style.visibility = 'hidden';
           }, 1000);
@@ -220,7 +221,17 @@ containerDiv.appendChild(closeButton);
       inpt_text.style.border = "1px solid #000";
       inpt_text.style.maxHeight = "240px";
       inpt_text.style.overflowX = "auto";
+      inpt-text.style.color = "#000";
       resetBtn.style.width = "fit-content";
       resetBtn.style.padding = "4px";
     }
+     function getSelectionText() {
+      var selecteText = "";
+      if (window.getSelection) {
+        selecteText = window.getSelection().toString();
+      } else if (document.selection && document.selection.type != "Control") {
+        selecteText = document.selection.createRange().selecteText;
+      }
+      document.getElementById('text').value = selecteText
+  }
   })();

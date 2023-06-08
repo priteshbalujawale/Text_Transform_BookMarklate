@@ -5,7 +5,7 @@
     if (!hasClass) {
       createElement();
       StyleFunc();
-      document.addEventListener('mouseup',getSelectionText);
+
       button_upper.addEventListener("click", upperCaseFunc);
       button_lower.addEventListener("click", lowerCaseFunc);
       button_capital.addEventListener("click", capitalCaseFunc);
@@ -225,13 +225,4 @@ containerDiv.appendChild(closeButton);
       resetBtn.style.width = "fit-content";
       resetBtn.style.padding = "4px";
     }
-     function getSelectionText() {
-      var selecteText = "";
-      if (window.getSelection) {
-        selecteText = window.getSelection().toString();
-      } else if (document.selection && document.selection.type != "Control") {
-        selecteText = document.selection.createRange().selecteText;
-      }
-      document.getElementById('text').value = selecteText
-  }
   })();

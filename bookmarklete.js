@@ -203,8 +203,8 @@ containerDiv.appendChild(closeButton);
           });
     
       });
-      text.style.background="#fff"
-      text.style.color="#000"
+      text.style.background="#fff";
+      text.style.color="#000";
       close_btn.style.position = "absolute";
       close_btn.style.right = "1px";
       close_btn.style.top = "1px";
@@ -221,7 +221,7 @@ containerDiv.appendChild(closeButton);
       inpt_text.style.border = "1px solid #000";
       inpt_text.style.maxHeight = "240px";
       inpt_text.style.overflowX = "auto";
-      inpt-text.style.color = "#000";
+      inpt_text.style.color = "#000";
       resetBtn.style.width = "fit-content";
       resetBtn.style.padding = "4px";
     }

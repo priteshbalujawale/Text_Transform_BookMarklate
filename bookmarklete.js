@@ -29,6 +29,7 @@
 
 // get the selected value in input field
     const targetElement = document.querySelector('.new-created-Element');
+    document.addEventListener('mouseup',getSelectionText);
     targetElement.addEventListener('mouseleave', function(){document.addEventListener('mouseup',getSelectionText)});
     targetElement.addEventListener('mouseover',function() { document.removeEventListener('mouseup',getSelectionText) });
   

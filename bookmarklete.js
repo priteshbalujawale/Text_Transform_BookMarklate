@@ -155,7 +155,8 @@
       var sentence = document.getElementById("text").value;; // Input sentence
       let words = sentence.split(/\b/); // Split the sentence into words
       let capitalizedWords = words.map(word => {
-        if (/^[a-zA-Z]+$/.test(word)) { // Check if the word contains only letters
+       // if (/^[a-zA-Z]+$/.test(word)) {  Check if the word contains only English letters
+         if (/^[a-zA-ZáéíóúüÁÉÍÓÚÜñÑ]+$/.test(word)) { //  Check if the word contains only English and spanish letters
           return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
         } else {
           return word; // Return the word as it is (symbols, signs, and brackets)
